@@ -1,25 +1,16 @@
 [build]
-  publish = "."              # your index.html is in root
-  functions = "netlify/functions"  # folder where your function files are located
-  command = "npm run build"  # if you have a build step, otherwise can be omitted
-
-[dev]
-  publish = "."              
+  publish = "."
   functions = "netlify/functions"
-  port = 8888  # optional: defines the port for netlify dev
 
-# Specify the Node.js version for your functions
 [build.environment]
-  NODE_VERSION = "16"  # or your preferred Node version
+  NODE_VERSION = "18"
 
-# Add headers if needed
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
 
-# Add redirects if you need API endpoints to map to your functions
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
