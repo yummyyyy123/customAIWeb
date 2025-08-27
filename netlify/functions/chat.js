@@ -1,64 +1,44 @@
-// File: /netlify/functions/chat.js
+// netlify/functions/chat.mjs
+import fetch from "node-fetch";
 
-exports.handler = async function(event, context) {
+export async function handler(event) {
+  // Only allow POST requests
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ error: "Method Not Allowed" }),
+    };
+  }
+
   try {
-    // Make sure your request is POST
-    if (event.httpMethod !== "POST") {
-      return {
-        statusCode: 405,
-        body: JSON.stringify({ error: "Method Not Allowed" }),
-      };
-    }
-
-    // Parse the incoming request body
     const { prompt } = JSON.parse(event.body);
 
-    if (!prompt) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: "Missing 'prompt' in request body" }),
-      };
-    }
-
-    // Call Hugging Face Inference API
-    const response = await fetch(
-      "https://api-inference.huggingface.co/models/facebook/distilbart-cnn-6-6",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.HF_API_KEY}`,
-        },
-        body: JSON.stringify({
-          inputs: prompt,
-          parameters: { max_new_tokens: 150 },
-        }),
-      }
-    );
+    // Call your model API here, replace with your actual endpoint
+    const response = await fetch("YOUR_MODEL_API_URL", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer YOUR_API_KEY`, // if needed
+      },
+      body: JSON.stringify({ prompt }),
+    });
 
     if (!response.ok) {
-      const errText = await response.text();
-      return {
-        statusCode: response.status,
-        body: JSON.stringify({ error: errText }),
-      };
+      throw new Error(`API responded with status ${response.status}`);
     }
 
     const data = await response.json();
 
-    // The Hugging Face text generation output is usually in data[0].summary_text or data[0].generated_text
-    const resultText = data[0]?.summary_text || data[0]?.generated_text || "No output";
-
     return {
       statusCode: 200,
-      body: JSON.stringify({ result: resultText }),
+      body: JSON.stringify({ result: data }),
     };
+  } catch (err) {
+    console.error("Error in Netlify function:", err);
 
-  } catch (error) {
-    console.error("Netlify Function Error:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message }),
+      body: JSON.stringify({ error: "Internal Server Error" }),
     };
   }
-};
+}
