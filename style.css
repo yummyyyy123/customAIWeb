@@ -1,0 +1,48 @@
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hover scale effect for cards */
+.hover-scale:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+/* Skill Bars */
+.skill-bar {
+  width: 0%;
+  transition: width 2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Contact Button Icons */
+.contact-btn img {
+  filter: grayscale(0);
+  transition: transform 0.3s;
+}
+
+.contact-btn:hover img {
+  transform: scale(1.2);
+}
+
+/* Typewriter cursor */
+#typewriter::after {
+  content: '|';
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+/* Smooth color transitions */
+body, section {
+  transition: background-color 0.5s, color 0.5s;
+}

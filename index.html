@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>William David Portfolio</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+
+  <!-- Custom CSS -->
+  <style>
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: scale(1.05);
+    }
+    
+    .skill-bar {
+      transition: width 0.3s ease;
+    }
+    
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Chatbot animations */
+    #chatbot-container {
+      transition: all 0.3s ease;
+    }
+    
+    #chatbot-toggle {
+      transition: all 0.3s ease;
+    }
+    
+    #chatbot-toggle:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans transition-colors duration-500">
+
+  <!-- ================= Header ================= -->
+  <header class="bg-white shadow-md fixed w-full z-50">
+    <div class="container mx-auto flex justify-between items-center p-5">
+      <div class="flex items-center gap-3">
+        <img src="wdd.png" alt="Logo" class="w-12 h-12 rounded-full shadow-lg object-cover">
+        <h1 class="text-2xl font-bold text-indigo-600">William David</h1>
+      </div>
+      <!-- Navbar for desktop -->
+      <nav class="hidden md:flex items-center gap-6">
+        <ul class="flex gap-6 text-gray-700 font-medium">
+          <li><a href="#about" class="hover:text-indigo-600">About Me</a></li>
+          <li><a href="#skills" class="hover:text-indigo-600">Skills</a></li>
+          <li><a href="#projects" class="hover:text-indigo-600">Projects</a></li>
+          <li><a href="#contact" class="hover:text-indigo-600">Contact</a></li>
+        </ul>
+      </nav>
+      <!-- Hamburger for mobile -->
+      <div class="md:hidden flex items-center">
+        <button id="hamburger" class="text-gray-700 focus:outline-none">
+          <i class="fas fa-bars fa-2x"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <nav id="mobile-menu" class="hidden bg-white shadow-md w-full md:hidden">
+      <ul class="flex flex-col gap-4 p-4 text-gray-700 font-medium">
+        <li><a href="#about" class="hover:text-indigo-600">About Me</a></li>
+        <li><a href="#skills" class="hover:text-indigo-600">Skills</a></li>
+        <li><a href="#projects" class="hover:text-indigo-600">Projects</a></li>
+        <li><a href="#contact" class="hover:text-indigo-600">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ================= Hero Section ================= -->
+  <section class="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-r from-indigo-500 to-purple-500 text-white relative">
+    <h2 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm William David</h2>
+    <p class="text-xl md:text-2xl mb-8">
+      <span id="typewriter" class="font-semibold"></span>
+    </p>
+    <div class="flex gap-4">
+      <a href="#contact" class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200 transition">Contact Me</a>
+      <a href="resume.pdf" download class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200 transition">Download Resume</a>
+    </div>
+  </section>
+
+  <!-- ================= About Me Section ================= -->
+  <section id="about" class="py-20 bg-gray-50 transition-colors">
+    <div class="container mx-auto px-5 flex flex-col md:flex-row items-center gap-10">
+      <div class="relative group w-64 h-64">
+        <img src="logo.jpg" alt="William David" class="w-full h-full rounded-full border-4 border-indigo-500 shadow-2xl object-cover transform group-hover:scale-105 transition duration-500">
+        <div class="absolute inset-0 opacity-20 rounded-full"></div>
+      </div>
+      <div class="max-w-3xl">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">About Me</h2>
+        <p class="text-gray-600 text-lg mb-4">
+          Hi! I'm William David, a BSIT graduate specializing in Cybersecurity and Full-Stack Web Development.
+          I love building interactive applications, performing penetration testing, and delivering secure software solutions.
+        </p>
+        <p class="text-gray-600 text-lg">
+          Experienced in Frontend & Backend development, QA, and Cybersecurity best practices. Passionate about technology and problem-solving.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Skills Section ================= -->
+  <section id="skills" class="py-20 bg-white transition-colors">
+    <div class="container mx-auto px-5">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Skills</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Frontend -->
+        <div class="bg-gray-50 shadow-lg p-6 rounded-xl hover-scale border-l-4 border-indigo-500">
+          <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+            <i class="fas fa-laptop-code text-indigo-500 text-2xl"></i> Frontend
+          </h3>
+          <p class="text-gray-500 text-sm mb-2">HTML5, CSS3, Bootstrap, Tailwind CSS, JavaScript (ES6+), React.js, jQuery, Responsive Design</p>
+          <div class="bg-gray-200 rounded-full h-6 relative">
+            <div class="skill-bar bg-indigo-500 h-6 rounded-full flex justify-end items-center pr-2 text-white font-bold" data-skill="95">0%</div>
+          </div>
+        </div>
+
+        <!-- DevOps -->
+        <div class="bg-gray-50 shadow-lg p-6 rounded-xl hover-scale border-l-4 border-purple-500">
+          <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+            <i class="fas fa-server text-purple-500 text-2xl"></i> DevOps
+          </h3>
+          <p class="text-gray-500 text-sm mb-2">Docker, GitHub Actions, CI/CD, Jenkins, Linux, AWS Basics</p>
+          <div class="bg-gray-200 rounded-full h-6 relative">
+            <div class="skill-bar bg-purple-500 h-6 rounded-full flex justify-end items-center pr-2 text-white font-bold" data-skill="75">0%</div>
+          </div>
+        </div>
+
+        <!-- Tools & Platforms -->
+        <div class="bg-gray-50 shadow-lg p-6 rounded-xl hover-scale border-l-4 border-teal-500">
+          <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+            <i class="fas fa-wrench text-teal-500 text-2xl"></i> Tools & Platforms
+          </h3>
+          <p class="text-gray-500 text-sm mb-2">VS Code, Jira, Postman, Git, GitHub, Figma, Trello, Linux CLI</p>
+          <div class="bg-gray-200 rounded-full h-6 relative">
+            <div class="skill-bar bg-teal-500 h-6 rounded-full flex justify-end items-center pr-2 text-white font-bold" data-skill="85">0%</div>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="bg-gray-50 shadow-lg p-6 rounded-xl hover-scale border-l-4 border-green-500">
+          <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+            <i class="fas fa-database text-green-500 text-2xl"></i> Backend & Database
+          </h3>
+          <p class="text-gray-500 text-sm mb-2">VBS, C++, Python, SQL, XML, REST APIs, JSON, Git/GitHub</p>
+          <div class="bg-gray-200 rounded-full h-6 relative">
+            <div class="skill-bar bg-green-500 h-6 rounded-full flex justify-end items-center pr-2 text-white font-bold" data-skill="85">0%</div>
+          </div>
+        </div>
+
+        <!-- Cybersecurity -->
+        <div class="bg-gray-50 shadow-lg p-6 rounded-xl hover-scale border-l-4 border-red-500">
+          <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+            <i class="fas fa-shield-alt text-red-500 text-2xl"></i> Cybersecurity
+          </h3>
+          <p class="text-gray-500 text-sm mb-2">Penetration Testing, Vulnerability Assessment, Threat Intelligence, OWASP Top 10, Secure Coding Standards</p>
+          <div class="bg-gray-200 rounded-full h-6 relative">
+            <div class="skill-bar bg-red-500 h-6 rounded-full flex justify-end items-center pr-2 text-white font-bold" data-skill="80">0%</div>
+          </div>
+        </div>
+
+        <!-- QA -->
+        <div class="bg-gray-50 shadow-lg p-6 rounded-xl hover-scale border-l-4 border-yellow-500">
+          <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+            <i class="fas fa-tasks text-yellow-500 text-2xl"></i> Software QA
+          </h3>
+          <p class="text-gray-500 text-sm mb-2">Manual Testing, Test Case Design, Regression Testing, Bug Tracking (Jira), Documentation, Agile/Scrum QA, Functional & Smoke Testing</p>
+          <div class="bg-gray-200 rounded-full h-6 relative">
+            <div class="skill-bar bg-yellow-500 h-6 rounded-full flex justify-end items-center pr-2 text-white font-bold" data-skill="85">0%</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Projects Section ================= -->
+  <section id="projects" class="py-20 bg-gray-50 transition-colors">
+    <div class="container mx-auto px-5">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Projects</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div class="bg-white shadow-lg hover-scale p-6 rounded-xl flex flex-col justify-between hover:bg-indigo-50 transition">
+          <img src="thumb.png" alt="KinderMather" class="rounded-lg mb-4 w-full h-48 object-cover shadow-md">
+          <h3 class="font-bold text-xl mb-2 text-gray-800">KinderMather</h3>
+          <p class="text-gray-500 mb-4">VR application for kindergarteners to learn basic math concepts.</p>
+          <a href="https://github.com/yummyyyy123/KINDERMATHER-VERSION-1" target="_blank" class="mt-auto text-indigo-600 font-bold hover:underline">View Project</a>
+        </div>
+
+        <div class="bg-white shadow-lg hover-scale p-6 rounded-xl flex flex-col justify-between hover:bg-indigo-50 transition">
+          <img src="try.jpg" alt="Cybersecurity Lab" class="rounded-lg mb-4 w-full h-48 object-cover shadow-md">
+          <h3 class="font-bold text-xl mb-2 text-gray-800">Cybersecurity Lab</h3>
+          <p class="text-gray-500 mb-4">A hands-on cybersecurity lab designed to simulate real-world scenarios for penetration testing, vulnerability assessment, and network defense.</p>
+          <a href="https://tryhackme.com/p/abc123de" target="_blank" class="mt-auto text-indigo-600 font-bold hover:underline">View Project</a>
+        </div>
+
+        <div class="bg-white shadow-lg hover-scale p-6 rounded-xl flex flex-col justify-between hover:bg-indigo-50 transition">
+          <img src="cake.png" alt="Sweet Delights" class="rounded-lg mb-4 w-full h-48 object-cover shadow-md">
+          <h3 class="font-bold text-xl mb-2 text-gray-800">Sweet Delights — Bakery E-commerce Websites</h3>
+          <p class="text-gray-500 mb-4">A responsive, modern e-commerce site for a boutique bakery featuring a dynamic product catalog, interactive Add-to-Cart functionality, and visually appealing promotions. Built with HTML, CSS, and JavaScript, it delivers a clean, intuitive shopping experience and showcases my front-end development skills.</p>
+          <a href="https://sweetssdelight.netlify.app/" target="_blank" class="mt-auto text-indigo-600 font-bold hover:underline">View Project</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Contact Section ================= -->
+  <section id="contact" class="py-20 bg-indigo-600 text-white">
+    <div class="container mx-auto px-5 text-center">
+      <h2 class="text-3xl font-bold mb-8">Contact Me</h2>
+      <p class="text-lg mb-8">Let's connect! I'm open to collaboration, freelance projects, and cybersecurity work.</p>
+
+      <!-- Contact Form -->
+      <form name="contact" method="POST" data-netlify="true" class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-lg flex flex-col gap-4 text-gray-900">
+       <input type="hidden" name="form-name" value="contact">
+        <input type="text" name="name" placeholder="Your Name" required class="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <input type="email" name="email" placeholder="Your Email" required class="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <textarea name="message" placeholder="Your Message" rows="5" required class="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+        <button type="submit" class="bg-indigo-600 text-white p-3 rounded font-bold hover:bg-indigo-700 transition">Send Message</button>
+        <div id="form-success" class="text-green-600 font-bold mt-2 hidden">Thank you! Your message has been sent.</div>
+      </form>
+
+      <!-- Social / Contact Links -->
+      <div class="mt-10 flex justify-center gap-6 flex-wrap">
+        <a href="https://github.com/yummyyyy123" target="_blank" class="flex items-center gap-2 bg-white text-gray-800 px-4 py-2 rounded-lg font-medium shadow hover:bg-gray-100 transition">
+          <i class="fab fa-github text-2xl"></i> GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/william-david-domingo-45040637b/" target="_blank" class="flex items-center gap-2 bg-white text-gray-800 px-4 py-2 rounded-lg font-medium shadow hover:bg-gray-100 transition">
+          <i class="fab fa-linkedin text-2xl text-blue-600"></i> LinkedIn
+        </a>
+        <a href="mailto:williamdaviddomingo5@gmail.com" class="flex items-center gap-2 bg-white text-gray-800 px-4 py-2 rounded-lg font-medium shadow hover:bg-gray-100 transition">
+          <i class="fas fa-envelope text-2xl text-red-500"></i> Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6 text-center">
+    <p>&copy; 2025 William David. All rights reserved.</p>
+  </footer>
+
+  <!-- ================= Chatbot ================= -->
+  <div id="chatbot-container" class="fixed bottom-20 right-5 w-80 hidden z-50">
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden flex flex-col h-96">
+      <!-- Header -->
+      <div class="bg-indigo-600 text-white p-3 flex justify-between items-center">
+        <span class="font-bold">AI Assistant</span>
+        <button id="close-chatbot" class="text-white text-xl hover:text-gray-300">&times;</button>
+      </div>
+      <!-- Messages -->
+      <div id="chatbot-messages" class="flex-1 p-3 overflow-y-auto text-sm space-y-2 bg-gray-50">
+        <div class="text-left text-gray-600">
+          <strong>AI:</strong> Hi! I'm here to help answer questions about William's portfolio, skills, and projects. What would you like to know?
+        </div>
+      </div>
+      <!-- Input -->
+      <div class="p-3 border-t bg-white flex gap-2">
+        <input id="chatbot-input" type="text" placeholder="Ask me about William's work..." 
+              class="flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
+        <button id="send-chatbot" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Button -->
+  <button id="chatbot-toggle" 
+          class="fixed bottom-5 right-5 bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700 z-50">
+    <i class="fas fa-comment-dots text-2xl"></i>
+  </button>
+
+<!-- ================= JavaScript ================= -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Navbar toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+  // Scroll spy
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('nav ul li a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 80;
+      if (scrollY >= sectionTop) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('text-indigo-600', 'font-bold');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('text-indigo-600', 'font-bold');
+    });
+  });
+
+  // Skill bars animation
+  const skillBars = document.querySelectorAll(".skill-bar");
+  const animateSkillBars = () => {
+    skillBars.forEach(bar => {
+      const rect = bar.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        let target = parseInt(bar.dataset.skill);
+        let current = parseInt(bar.style.width) || 0;
+        if (current < target) {
+          const increment = Math.ceil((target - current) / 20);
+          current = Math.min(current + increment, target);
+          bar.style.width = current + "%";
+          bar.textContent = current + "%";
+        }
+      }
+    });
+  };
+  
+  window.addEventListener('scroll', animateSkillBars);
+  animateSkillBars(); // Initial call
+
+  // Typewriter effect
+  const typewriterEl = document.getElementById("typewriter");
+  const words = ["Full-Stack Developer", "Cybersecurity Enthusiast", "Software QA Specialist"];
+  let i = 0, j = 0, isDeleting = false;
+  
+  function type() {
+    const word = words[i];
+    typewriterEl.textContent = isDeleting ? word.substring(0, j--) : word.substring(0, j++);
+    
+    if (!isDeleting && j > word.length) { 
+      isDeleting = true; 
+      setTimeout(type, 1500); 
+      return; 
+    }
+    if (isDeleting && j < 0) { 
+      isDeleting = false; 
+      i = (i + 1) % words.length; 
+      j = 0; 
+      setTimeout(type, 500); 
+      return; 
+    }
+    setTimeout(type, isDeleting ? 50 : 100);
+  }
+  type();
+
+  // ================= Chatbot Logic =================
+  const chatbotToggle = document.getElementById("chatbot-toggle");
+  const chatbotContainer = document.getElementById("chatbot-container");
+  const closeChatbot = document.getElementById("close-chatbot");
+  const sendChatbot = document.getElementById("send-chatbot");
+  const chatbotInput = document.getElementById("chatbot-input");
+  const chatbotMessages = document.getElementById("chatbot-messages");
+
+  // Toggle chatbot
+  chatbotToggle.addEventListener("click", () => {
+    chatbotContainer.classList.toggle("hidden");
+    if (!chatbotContainer.classList.contains("hidden")) {
+      chatbotInput.focus();
+    }
+  });
+
+  // Close chatbot
+  closeChatbot.addEventListener("click", () => {
+    chatbotContainer.classList.add("hidden");
+  });
+
+  // Function to add message to chat
+  function addMessage(message, isUser = false) {
+    const messageEl = document.createElement("div");
+    messageEl.className = `text-${isUser ? 'right' : 'left'} ${isUser ? 'text-indigo-600' : 'text-gray-600'}`;
+    messageEl.innerHTML = `<strong>${isUser ? 'You' : 'AI'}:</strong> ${message}`;
+    chatbotMessages.appendChild(messageEl);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  // Function to send message to AI
+  async function sendMessage(message) {
+    if (!message.trim()) return;
+    
+    // Add user message
+    addMessage(message, true);
+    chatbotInput.value = "";
+    
+    // Add typing indicator
+    const typingEl = document.createElement("div");
+    typingEl.className = "text-left text-gray-400 italic";
+    typingEl.innerHTML = "<strong>AI:</strong> Typing...";
+    typingEl.id = "typing-indicator";
+    chatbotMessages.appendChild(typingEl);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+    try {
+      const response = await fetch("/.netlify/functions/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ prompt: message })
+      });
+
+      const data = await response.json();
+      
+      // Remove typing indicator
+      const typing = document.getElementById("typing-indicator");
+      if (typing) typing.remove();
+      
+      if (response.ok) {
+        addMessage(data.response);
+      } else {
+        addMessage("Sorry, I'm having trouble connecting right now. Please try again later.");
+      }
+      
+    } catch (error) {
+      // Remove typing indicator
+      const typing = document.getElementById("typing-indicator");
+      if (typing) typing.remove();
+      
+      console.error("Chatbot error:", error);
+      addMessage("Sorry, I'm having trouble connecting right now. Please try again later.");
+    }
+  }
+
+  // Send button click
+  sendChatbot.addEventListener("click", () => {
+    sendMessage(chatbotInput.value);
+  });
+
+  // Enter key press
+  chatbotInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage(chatbotInput.value);
+    }
+  });
+
+  // Close mobile menu when clicking nav links
+  document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
