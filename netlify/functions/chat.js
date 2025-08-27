@@ -2,45 +2,27 @@ const fetch = require("node-fetch");
 
 exports.handler = async function(event, context) {
   try {
-    // Log incoming request for debugging
-    console.log("Request body:", event.body);
-
     if (!event.body) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ response: "Error: No request body provided" })
-      };
+      return { statusCode: 400, body: JSON.stringify({ response: "No request body provided" }) };
     }
 
     let requestData;
     try {
       requestData = JSON.parse(event.body);
     } catch (e) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ response: "Error: Invalid JSON in request body" })
-      };
+      return { statusCode: 400, body: JSON.stringify({ response: "Invalid JSON" }) };
     }
 
     const { prompt } = requestData;
     if (!prompt) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({
-          response: "Error: No prompt provided in request body",
-          expectedFormat: { prompt: "Your text here" }
-        })
-      };
+      return { statusCode: 400, body: JSON.stringify({ response: "No prompt provided" }) };
     }
 
     if (!process.env.HF_API_KEY) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ response: "Server error: HF_API_KEY not configured" })
-      };
+      return { statusCode: 500, body: JSON.stringify({ response: "HF_API_KEY not set" }) };
     }
 
-    const HF_API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-small";
+    const HF_API_URL = "https://api-inference.huggingface.co/models/facebook/distilbart-cnn-6-6";
 
     const response = await fetch(HF_API_URL, {
       method: "POST",
@@ -50,7 +32,7 @@ exports.handler = async function(event, context) {
       },
       body: JSON.stringify({
         inputs: prompt,
-        parameters: { max_new_tokens: 100 } // short responses
+        parameters: { max_new_tokens: 150 }
       })
     });
 
@@ -58,30 +40,19 @@ exports.handler = async function(event, context) {
       const errorData = await response.json().catch(() => ({}));
       return {
         statusCode: response.status,
-        body: JSON.stringify({
-          response: `Hugging Face API error: ${response.status} ${response.statusText}`,
-          details: errorData
-        })
+        body: JSON.stringify({ response: `HF API error: ${response.status} ${response.statusText}`, details: errorData })
       };
     }
 
     const data = await response.json();
-    console.log("HF API raw response:", data);
+    console.log("HF API response:", data);
 
-    let reply = "I couldn't generate a response. Please try rephrasing your question.";
-
-    // Handle different response formats
-    if (Array.isArray(data) && data[0]?.generated_text) {
-      reply = data[0].generated_text;
-    } else if (data?.generated_text) {
-      reply = data.generated_text;
-    } else if (typeof data === "string") {
-      reply = data;
-    }
-
-    // Remove prompt repetition if exists
-    if (reply.startsWith(prompt)) {
-      reply = reply.substring(prompt.length).trim();
+    // Handle response
+    let reply = "I couldn't generate a response. Try rephrasing your question.";
+    if (Array.isArray(data) && data[0]?.summary_text) {
+      reply = data[0].summary_text;
+    } else if (data?.summary_text) {
+      reply = data.summary_text;
     }
 
     return {
@@ -92,10 +63,6 @@ exports.handler = async function(event, context) {
 
   } catch (err) {
     console.error("Server error:", err);
-    return {
-      statusCode: 500,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ response: "Server error occurred. Please try again.", error: err.message })
-    };
+    return { statusCode: 500, body: JSON.stringify({ response: "Server error occurred", error: err.message }) };
   }
 };
