@@ -47,7 +47,9 @@ exports.handler = async function(event, context) {
       };
     }
 
-    const HF_API_URL = "https://api-inference.huggingface.co/models/tiiuae/falcon-3b-base";
+    //const HF_API_URL = "https://api-inference.huggingface.co/models/tiiuae/falcon-3b-base";
+    const HF_API_URL = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct";
+
 
     // Make the request to Hugging Face
     console.log("Making request to Hugging Face API");
@@ -107,4 +109,5 @@ exports.handler = async function(event, context) {
       })
     };
   }
+
 }
