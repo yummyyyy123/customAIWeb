@@ -48,7 +48,9 @@ exports.handler = async function(event, context) {
     }
 
     //const HF_API_URL = "https://api-inference.huggingface.co/models/tiiuae/falcon-3b-base";
-    const HF_API_URL = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct";
+  //const HF_API_URL = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct";
+    const HF_API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-small";
+
 
 
     // Make the request to Hugging Face
@@ -111,3 +113,4 @@ exports.handler = async function(event, context) {
   }
 
 }
+
